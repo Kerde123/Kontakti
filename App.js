@@ -4,7 +4,7 @@ import * as Contacts from 'expo-contacts';
 import * as SMS from 'expo-sms';
 
 export default function App() {
-  const [Contact, setContact] = useState({});
+  const [Contact, setContact] = useState([]);
 
   const getContacts = async () => {
     const { status } = await Contacts.requestPermissionsAsync();
@@ -27,7 +27,8 @@ export default function App() {
         <FlatList
           data={Contact}
           renderItem={({ item }) =>
-          <Text>{item.name} {item.phoneNumbers[0].number}</Text>
+          <Text>{item.name} {item.phoneNumbers ? item.phoneNumbers[0].number :
+            '(no phone number)'} </Text>
       } 
       />
       </View>
